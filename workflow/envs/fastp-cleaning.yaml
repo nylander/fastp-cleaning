@@ -1,0 +1,11 @@
+name: fastp-cleaning
+channels:
+    - bioconda
+    - conda-forge
+    - defaults
+dependencies:
+    - python = 3.7
+    - fastp = 0.23.1
+    - multiqc = 1.11
+    - pandas = 1.2.1
+    - pigz =2.4

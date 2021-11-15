@@ -1,0 +1,79 @@
+from pathlib import Path
+import textwrap
+from snakemake.exceptions import WorkflowError
+from rules.publications import publications
+
+configfile: "config/config.yaml"
+
+INPUTDIR = Path(config["inputdir"])
+OUTDIR = Path(config["outdir"])
+LOGDIR = Path(config["logdir"])
+
+all_outputs = []
+
+citations = {publications["Snakemake"]}
+
+SAMPLES = set(glob_wildcards(INPUTDIR/config["input_fn_pattern"]).sample)
+
+if len(SAMPLES) < 1:
+    raise WorkflowError("Found no samples! Check input file pattern and path in config.yaml")
+else:
+    print(f"Found the following samples in inputdir using input filename pattern '{config['input_fn_pattern']}':\n{SAMPLES}")
+
+report: "report/workflow.rst"
+
+if config["fastp_merge"]:
+    include: "rules/fastp_merge.smk"
+else:
+    include: "rules/fastp.smk"
+
+include: "rules/multiqc.smk"
+
+localrules: all
+
+rule all:
+    input:
+        all_outputs
+
+onerror:
+    print("\n".join([
+        "="*60,
+        "There was an error executing the workflow!".center(60),
+        "Check log output to see error, then rerun workflow.".center(60),
+        "="*60,
+        ])
+    )
+
+onsuccess:
+    if config["report"]:
+        from sys import argv
+        from datetime import datetime
+        report_datetime = datetime.now().strftime("%Y%m%d-%H%S")
+        # TODO: change hard coded path to output folder!
+        citation_filename = f"output/citations-{report_datetime}.rst"
+        with open(citation_filename, "w") as citation_file:
+            for citation in sorted(citations):
+                citation_file.write("* "+citation+"\n")
+        citations_link = Path("output/citations.rst")
+        if citations_link.exists():
+            Path("output/citations.rst").unlink()
+        Path("citations.rst").symlink_to(citation_filename)
+        shell("{snakemake_call} --unlock".format(snakemake_call=argv[0]))
+        shell("{snakemake_call} --report {report}-{datetime}.html".format(
+            snakemake_call=argv[0],
+            report=config["report"],
+            datetime=report_datetime,
+            )
+        )
+    print("\n".join([
+        "="*60,
+        "Workflow completed successfully".center(60),
+        ])
+    )
+    print("\n".join([
+        "",
+        "="*60,
+        ])
+    )
+
+

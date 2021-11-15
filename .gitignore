@@ -1,0 +1,9 @@
+.snakemake/*
+input/*.gz
+tmp/
+TODO
+NOTES
+__pycache__
+*.swp
+output/*
+Old/*
