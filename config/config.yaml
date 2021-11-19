@@ -19,6 +19,7 @@ multiqc_report: False
 #########################
 fastp:
     extra: "--detect_adapter_for_pe --correction --cut_right"
+    n: 4
 multiqc:
     extra: ""
 

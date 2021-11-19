@@ -1,15 +1,13 @@
-# Set defaults for birdscanner2 rules on cluster.
-# Last modified: fre okt 29, 2021  04:55
+# Set defaults for fastp-rules rules on cluster.
+# Last modified: fre nov 19, 2021  05:22
 # Sign: JN
-# Notes: Exceptions are specified below.
-# Threads are given per tool, and are specified in config/config.yaml
 # IMPORTANT: Adjust the account number below.
 
 __default__:
   account: "snic1234-5-678"
   partition: "core"
   extra: ""
-  time: "03:00:00"
+  time: "01:00:00"
   cpus-per-task: 1
   n: 2
   output: "slurm/stdout/{rule}.{wildcards}.out"

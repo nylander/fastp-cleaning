@@ -21,7 +21,7 @@ if config["run_fastp"]:
         conda:
             "../envs/fastp-cleaning.yaml"
         threads:
-            cluster_config["fastp"]["n"] if "fastp" in cluster_config else 4
+            cluster_config["fastp"]["n"] if "fastp" in cluster_config else fastp_config["n"]
         params:
             extra=fastp_config["extra"],
         shell:
