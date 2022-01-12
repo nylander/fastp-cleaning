@@ -1,6 +1,6 @@
 # fastp-cleaning
 
-- Last modified: ons jan 12, 2022  02:51
+- Last modified: ons jan 12, 2022  02:55
 - Sign: nylander
 
 ## Description
@@ -32,7 +32,7 @@ TODO:
 2. Clone the repository: `git clone https://github.com/Naturhistoriska/fastp-cleaning.git`
 3. Put input data (gzip-compressed paired-end illumina fastq files) in folder `fastp-cleaning/input`
 4. Review the `fastp-cleaning/config/config.yaml` and make sure input file name endings (currently `_R1_001.fastq.gz`),
-   matches your input files, and change options for software used if needed.
+   matches your input files, select the steps used by the pipeline, and change options for software used if needed.
 5. Make sure your current working directory is `fastp-cleaning`
 6. Test run `snakemake -n`
 7. Run with `snakemake --cores N` (substitute N with the number of cores you wish to use)
@@ -45,7 +45,7 @@ TODO:
 2. Clone the repository: `git clone https://github.com/Naturhistoriska/fastp-cleaning.git`
 3. Put input data (gzip-compressed paired-end illumina fastq files) in folder `fastp-cleaning/input`
 4. Review the `fastp-cleaning/config/config.yaml` and make sure input file name endings (currently `_R1_001.fastq.gz`),
-   matches your input files, and change options for software used if needed.
+   matches your input files, select the steps used by the pipeline, and change options for software used if needed.
 5. Make sure your current working directory is `fastp-cleaning`
 6. Test run `snakemake --use-conda -n`
 7. Run with `snakemake --use-conda --cores N` (substitute N with the number of cores you wish to use)
@@ -57,7 +57,7 @@ TODO:
 3. Edit the file `fastp-cleaning/config/cluster.yaml` to add your CPU project account number
 4. Add input files (use symlinks to save space) to `fastp-cleaning/input/`
 5. Review the `fastp-cleaning/config/config.yaml` and make sure input file name endings (currently `_R1_001.fastq.gz`),
-   matches your input files, and change options for software used if needed.
+   matches your input files, select the steps used by the pipeline, and change options for software used if needed.
 6. Start a screen session: `screen -S fast-cleaning`
 7. Load modules: `module load bioinfo-tools snakemake`
 8. Change directory to `fastp-cleaning` and test run: `snakemake -n --use-conda --profile slurm -j 100`
