@@ -1,8 +1,8 @@
 # Makefile for fastpcleaning
-# Last modified: mån nov 15, 2021  04:26
+# Last modified: ons jan 12, 2022  12:29
 # Sign: JN
 
-.PHONY: all run debug dryrun report slurm-init slurm-run clean
+.PHONY: all run debug dryrun report slurm-init slurm-run slurm-cmd clean
 
 all: run
 
@@ -18,8 +18,13 @@ dryrun:
 report:
 	snakemake --report fastp-cleaning-report.html
 
-slurm-run:
+slurm-cmd:
 	snakemake --use-conda --profile slurm -j 100
+
+slurm-init:
+	module load bioinfo-tools snakemake
+
+slurm-run: slurm-init slurm-cmd
 
 clean:
 	rm -rf *.rst .snakemake ./workflow/rules/__pycache__
