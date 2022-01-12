@@ -11,6 +11,7 @@ report: "output/fastp-cleaning-report-"
 # Pipeline steps included
 #########################
 run_fastp: True
+fastp_dedup: True
 fastp_merge: False
 multiqc_report: False
 
@@ -18,8 +19,9 @@ multiqc_report: False
 # Extra options to tools
 #########################
 fastp:
-    extra: "--detect_adapter_for_pe --correction --cut_right"
+    extra: "--detect_adapter_for_pe --correction --cut_right "
     n: 4
+    dup_calc_accuracy: 3
 multiqc:
     extra: ""
 
