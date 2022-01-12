@@ -1,6 +1,6 @@
 # fastp-cleaning
 
-- Last modified: mån nov 15, 2021  04:50
+- Last modified: ons jan 12, 2022  12:23
 - Sign: nylander
 
 ## Description
@@ -44,5 +44,6 @@ Heavily influenced by the [stag-mwc](https://github.com/marcelladane/stag-mwc) p
 3. Edit the file `fastp-cleaning/config/cluster.yaml` to add your CPU project account number
 4. Add input files (use symlinks to save space) to `fastp-cleaning/input/`
 5. Start a screen session: `screen -S fast-cleaning`
-6. Change directory to `fastp-cleaning` and test run: `snakemake -n --use-conda --profile slurm`
-7. Run: `snakemake --use-conda --profile slurm`
+6. Load modules: `module load bioinfo-tools snakemake`
+7. Change directory to `fastp-cleaning` and test run: `snakemake -n --use-conda --profile slurm`
+8. Run: `snakemake --use-conda --profile slurm`
