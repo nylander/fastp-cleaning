@@ -1,6 +1,6 @@
 # fastp-cleaning
 
-- Last modified: ons jan 12, 2022  12:23
+- Last modified: ons jan 12, 2022  12:45
 - Sign: nylander
 
 ## Description
@@ -11,6 +11,15 @@ Heavily influenced by the [stag-mwc](https://github.com/marcelladane/stag-mwc) p
 
 - **Input**: gzipped paired-end illumina `fastq.gz` files
 - **Output**: filtered `fastq.gz` files placed in a new output directory
+
+---
+
+TODO:
+
+- add info on the filtering steps
+- make multiqc work
+---
+
 
 ## Run locally, without conda
 
