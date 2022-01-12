@@ -1,18 +1,18 @@
 # Set defaults for fastp-rules rules on cluster.
-# Last modified: fre nov 19, 2021  05:22
+# Last modified: ons jan 12, 2022  04:27
 # Sign: JN
 # IMPORTANT: Adjust the account number below.
 
 __default__:
-  account: "snic1234-5-678"
-  partition: "core"
-  extra: ""
-  time: "01:00:00"
-  cpus-per-task: 1
-  n: 2
-  output: "slurm/stdout/{rule}.{wildcards}.out"
-  error: "slurm/stderr/{rule}.{wildcards}.err"
-  jobname: "[{rule}]: {wildcards}"
+    account: "snic1234-5-678"
+    partition: "core"
+    extra: ""
+    time: "01:00:00"
+    cpus-per-task: 1
+    n: 2
+    output: "slurm/stdout/{rule}.{wildcards}.out"
+    error: "slurm/stderr/{rule}.{wildcards}.err"
+    jobname: "[{rule}]: {wildcards}"
 
 fastp:
     n: 4
