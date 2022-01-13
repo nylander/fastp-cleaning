@@ -44,36 +44,36 @@ onerror:
         ])
     )
 
-onsuccess:
-    if config["report"]:
-        from sys import argv
-        from datetime import datetime
-        report_datetime = datetime.now().strftime("%Y%m%d-%H%S")
-        # TODO: change hard coded path to output folder!
-        citation_filename = f"output/citations-{report_datetime}.rst"
-        with open(citation_filename, "w") as citation_file:
-            for citation in sorted(citations):
-                citation_file.write("* "+citation+"\n")
-        citations_link = Path("output/citations.rst")
-        if citations_link.exists():
-            Path("output/citations.rst").unlink()
-        Path("citations.rst").symlink_to(citation_filename)
-        shell("{snakemake_call} --unlock".format(snakemake_call=argv[0]))
-        shell("{snakemake_call} --report {report}-{datetime}.html".format(
-            snakemake_call=argv[0],
-            report=config["report"],
-            datetime=report_datetime,
-            )
-        )
-    print("\n".join([
-        "="*60,
-        "Workflow completed successfully".center(60),
-        ])
-    )
-    print("\n".join([
-        "",
-        "="*60,
-        ])
-    )
+#onsuccess:
+#    if config["report"]:
+#        from sys import argv
+#        from datetime import datetime
+#        report_datetime = datetime.now().strftime("%Y%m%d-%H%S")
+#        # TODO: change hard coded path to output folder!
+#        citation_filename = f"output/citations-{report_datetime}.rst"
+#        with open(citation_filename, "w") as citation_file:
+#            for citation in sorted(citations):
+#                citation_file.write("* "+citation+"\n")
+#        citations_link = Path("output/citations.rst")
+#        if citations_link.exists():
+#            Path("output/citations.rst").unlink()
+#        Path("citations.rst").symlink_to(citation_filename)
+#        shell("{snakemake_call} --unlock".format(snakemake_call=argv[0]))
+#        shell("{snakemake_call} --report {report}-{datetime}.html".format(
+#            snakemake_call=argv[0],
+#            report=config["report"],
+#            datetime=report_datetime,
+#            )
+#        )
+#    print("\n".join([
+#        "="*60,
+#        "Workflow completed successfully".center(60),
+#        ])
+#    )
+#    print("\n".join([
+#        "",
+#        "="*60,
+#        ])
+#    )
 
 
