@@ -4,6 +4,7 @@ import re
 import math
 import argparse
 import subprocess
+import datetime
 
 from snakemake import io
 from snakemake.io import Wildcards
@@ -16,13 +17,11 @@ def parse_jobscript():
     p.add_argument("jobscript", help="Snakemake jobscript with job properties.")
     return p.parse_args().jobscript
 
-
 def parse_sbatch_defaults(parsed):
     """Unpack SBATCH_DEFAULTS."""
     d = parsed.split() if type(parsed) == str else parsed
     args = {k.strip().strip("-"): v.strip() for k, v in [a.split("=") for a in d]}
     return args
-
 
 def load_cluster_config(path):
     """Load config to dict either from absolute path or relative to profile dir."""
@@ -86,6 +85,16 @@ def format_wildcards(string, job_properties):
             "IndexError with group job {}: {}".format(job.jobid, str(ex))
         )
 
+def hhmmss2sec(t):
+    h,m,s = t.split(':')
+    return int(datetime.timedelta(hours=int(h),minutes=int(m),seconds=int(s)).total_seconds())
+
+def sec2hhmmss(s):
+    h = s // 3600
+    m = s % 3600 // 60
+    s = s % 3600 % 60
+    return '{:02d}:{:02d}:{:02d}'.format(h, m, s)
+
 # adapted from ClusterExecutor.cluster_params function in snakemake.executor
 def format_values(dictionary, job_properties):
     formatted = dictionary.copy()
@@ -111,7 +120,6 @@ def convert_job_properties(job_properties, resource_mapping={}):
         options["cpus-per-task"] = job_properties["threads"]
     return options
 
-
 def ensure_dirs_exist(path):
     """Ensure output folder for Slurm log files exist."""
     di = os.path.dirname(path)
@@ -120,7 +128,6 @@ def ensure_dirs_exist(path):
     if not os.path.exists(di):
         os.makedirs(di, exist_ok=True)
     return
-
 
 def submit_job(jobscript, **sbatch_options):
     """Submit jobscript and return jobid."""
@@ -136,7 +143,6 @@ def submit_job(jobscript, **sbatch_options):
     except Exception as e:
         raise e
     return jobid
-
 
 def advanced_argument_conversion(arg_dict):
     """Experimental adjustment of sbatch arguments to the given or default partition.
@@ -178,7 +184,13 @@ def advanced_argument_conversion(arg_dict):
     # Update time. If requested time is larger than maximum allowed time, reset
     try:
         if "time" in arg_dict:
-            adjusted_args["time"] = min(int(config["time"]), int(arg_dict["time"]))
+            #adjusted_args["time"] = min(int(config["time"]), int(arg_dict["time"]))
+            # Expects the following format: "HH:MM:SS"
+            # TODO: Handle also "D-HH:MM:SS".
+            config_secs = hhmmss2sec(config["time"])
+            arg_dict_secs = hhmmss2sec(arg_dict["time"])
+            min_secs = min(config_secs, arg_dict_secs)
+            adjusted_args["time"] = sec2hhmmss(min_secs)
     except Exception as e:
         print(e)
         raise e
@@ -186,14 +198,12 @@ def advanced_argument_conversion(arg_dict):
     arg_dict.update(adjusted_args)
     return arg_dict
 
-
 def _get_default_partition():
     """Retrieve default partition for cluster"""
     res = subprocess.check_output(["sinfo", "-O", "partition"])
     m = re.search(r"(?P<partition>\S+)\*", res.decode(), re.M)
     partition = m.group("partition")
     return partition
-
 
 def _get_cluster_configuration(partition):
     """Retrieve cluster configuration for a partition."""
@@ -220,7 +230,6 @@ def _get_cluster_configuration(partition):
     )
     return d
 
-
 def _get_features_and_memory(partition):
     """Retrieve features and memory for a partition in the cluster
     configuration. """
@@ -235,7 +244,6 @@ def _get_features_and_memory(partition):
             {"mem": m.groupdict()["mem"], "features": m.groupdict()["feat"].split(",")}
         )
     return mem_feat
-
 
 def _get_available_memory(mem_feat, constraints=None):
     """Get available memory
@@ -258,3 +266,4 @@ def _get_available_memory(mem_feat, constraints=None):
     except Exception as e:
         print(e)
         raise
+
