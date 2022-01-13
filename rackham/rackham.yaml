@@ -1,0 +1,18 @@
+# Cluster config file for fastp-cleaning for use on UPPMAX Rackham
+# IMPORTANT: Adjust the account number below!
+__default__:
+    account: "snic1234-56-789"
+    partition: "core"
+    extra: ""
+    time: "03:00:00"
+    n: 4
+    stderr: "output/slurm_logs/slurm-{rule}-{wildcards}.stderr"
+    stdout: "output/slurm_logs/slurm-{rule}-{wildcards}.stdout"
+    jobname: "[{rule}]: {wildcards}"
+
+#############################
+# fastp
+#############################
+fastp:
+    n: 4
+    time: "01:00:00"

@@ -1,8 +1,6 @@
-# Makefile for fastpcleaning
-# Last modified: ons jan 12, 2022  12:29
-# Sign: JN
+# Makefile for fastp-cleaning
 
-.PHONY: all run debug dryrun report slurm-init slurm-run slurm-cmd clean
+.PHONY: all run debug dryrun report slurm-init slurm-run slurm-cmd clean distclean
 
 all: run
 
@@ -19,10 +17,10 @@ report:
 	snakemake --report fastp-cleaning-report.html
 
 slurm-cmd:
-	snakemake --use-conda --profile slurm -j 100
+	snakemake --use-conda --profile rackham -j 100
 
 slurm-init:
-	module load bioinfo-tools snakemake
+	module load bioinfo-tools conda snakemake/5.30.1 && mkdir -p cond && export CONDA_ENVS_PATH="$$PWD"/cond
 
 slurm-run: slurm-init slurm-cmd
 
