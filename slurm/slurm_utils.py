@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+
+# JN: Taken from nbis-meta, withminor adjustments
+
 import os
 import re
 import math
@@ -158,8 +161,6 @@ def advanced_argument_conversion(arg_dict):
     # select the partition with lowest memory
     try:
         config = _get_cluster_configuration(partition)
-        # JN
-        print(config["time"])
         mem_feat = _get_features_and_memory(partition)
         MEMORY_PER_PARTITION = _get_available_memory(mem_feat, constraint)
         MEMORY_PER_CPU = MEMORY_PER_PARTITION / int(config["cpus"])
