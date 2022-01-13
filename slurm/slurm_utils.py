@@ -158,6 +158,8 @@ def advanced_argument_conversion(arg_dict):
     # select the partition with lowest memory
     try:
         config = _get_cluster_configuration(partition)
+        # JN
+        print(config["time"])
         mem_feat = _get_features_and_memory(partition)
         MEMORY_PER_PARTITION = _get_available_memory(mem_feat, constraint)
         MEMORY_PER_CPU = MEMORY_PER_PARTITION / int(config["cpus"])
@@ -187,9 +189,10 @@ def advanced_argument_conversion(arg_dict):
             #adjusted_args["time"] = min(int(config["time"]), int(arg_dict["time"]))
             # Expects the following format: "HH:MM:SS"
             # TODO: Handle also "D-HH:MM:SS".
-            config_secs = hhmmss2sec(config["time"])
+            # Note: time from config is already converted to int!
+            #config_secs = hhmmss2sec(config["time"])
             arg_dict_secs = hhmmss2sec(arg_dict["time"])
-            min_secs = min(config_secs, arg_dict_secs)
+            min_secs = min(config["time"], arg_dict_secs)
             adjusted_args["time"] = sec2hhmmss(min_secs)
     except Exception as e:
         print(e)
