@@ -1,6 +1,6 @@
 # fastp-cleaning
 
-- Last modified: ons jan 12, 2022  03:19
+- Last modified: tor jan 13, 2022  02:00
 - Sign: nylander
 
 ## Description
@@ -72,7 +72,7 @@ Filter fastq files using [fastp](https://github.com/OpenGene/fastp).
 
 ## Acknowledgements
 
-The pipeline heavily influenced by the [stag-mwc](https://github.com/marcelladane/stag-mwc) pipeline.
+The pipeline heavily influenced by the [stag-mwc](https://github.com/ctmrbio/stag-mwc) pipeline.
 
 ## License and copyright
 
