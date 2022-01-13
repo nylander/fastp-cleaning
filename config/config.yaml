@@ -5,7 +5,7 @@ inputdir: "input"
 input_fn_pattern: "{sample}_{readpair}_001.fastq.gz"
 outdir: "output"
 logdir: "output/logs"
-report: "output/fastp-cleaning-report-"
+#report: "output/fastp-cleaning-report-"
 
 #########################
 # Pipeline steps included
