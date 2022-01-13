@@ -16,13 +16,8 @@ dryrun:
 report:
 	snakemake --report fastp-cleaning-report.html
 
-#slurm-run:
-#	module load bioinfo-tools; \
-#	module load conda; \
-#	module load snakemake/5.30.1; \
-#	mkdir -p conda_envs; \
-#	export CONDA_ENVS_PATH=$$PWD/conda_envs; \
-#	snakemake --use-conda --profile rackham -j 100;
+slurm-test:
+	snakemake --dry-run --printshellcmds --use-conda --profile rackham -j 100
 
 slurm-run:
 	snakemake --use-conda --profile rackham -j 100

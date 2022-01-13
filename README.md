@@ -1,6 +1,6 @@
 # fastp-cleaning
 
-- Last modified: tor jan 13, 2022  02:00
+- Last modified: tor jan 13, 2022  05:47
 - Sign: nylander
 
 ## Description
@@ -54,16 +54,22 @@ Filter fastq files using [fastp](https://github.com/OpenGene/fastp).
 
 ## How to run on UPPMAX
 
+Note: On rackham we are loading conda and snakemake (v.5) as modules.
+This can be done manually or using a script ([rackham/scripts/init.sh](rackham/scripts/init.sh)).
+For convenience, we also start the run with the [Makefile](Makefile).
+
 1. Log in to [UPPMAX](https://uppmax.uu.se/) (rackham.uppmax.uu.se)
 2. Clone the repository in a project folder: `git clone https://github.com/nylander/fastp-cleaning.git`
-3. Edit the file `fastp-cleaning/config/cluster.yaml` to add your CPU-project account number
-4. Add input files (use symlinks to save space) to `fastp-cleaning/input/`
-5. Review the `fastp-cleaning/config/config.yaml` and make sure input file name endings (currently `_R1_001.fastq.gz`),
+3. Edit the file `fastp-cleaning/rackham/rackham.yaml` to add your CPU-project account number. For example:
+`sed -i -e 's/snic1234-56-789/snic2022-01-001/' rackham/rackham.yaml`.
+4. Add input files (use symbolic links to save space) to `fastp-cleaning/input/`
+5. Review the `fastp-cleaning/config/config.yaml` and make sure input file-name endings (currently `_R1_001.fastq.gz`),
    matches your input files, select the steps used by the pipeline, and change options for software used if needed.
 6. Start a screen session: `screen -S fast-cleaning`
-7. Load modules: `module load bioinfo-tools snakemake`
-8. Change directory to `fastp-cleaning` and test run: `snakemake -n --use-conda --profile slurm -j 100`
-9. Run: `snakemake --use-conda --profile slurm -j 100`
+7. Load modules: `source rackham/scripts/init.sh`
+8. Test run: `make slurm-test`
+9. Run: `make slurm-run`
+10. Detach from the screen session.
 
 ## TODO
 
