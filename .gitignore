@@ -3,6 +3,7 @@ input/*.gz
 tmp/
 TODO
 NOTES
+DEBUG
 __pycache__
 *.swp
 output/*
