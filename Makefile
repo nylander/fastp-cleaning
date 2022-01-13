@@ -16,13 +16,16 @@ dryrun:
 report:
 	snakemake --report fastp-cleaning-report.html
 
+#slurm-run:
+#	module load bioinfo-tools; \
+#	module load conda; \
+#	module load snakemake/5.30.1; \
+#	mkdir -p conda_envs; \
+#	export CONDA_ENVS_PATH=$$PWD/conda_envs; \
+#	snakemake --use-conda --profile rackham -j 100;
+
 slurm-run:
-	module load bioinfo-tools; \
-	module load conda; \
-	module load snakemake/5.30.1; \
-	mkdir -p conda_envs; \
-	export CONDA_ENVS_PATH=$$PWD/conda_envs; \
-	snakemake --use-conda --profile rackham -j 100;
+	snakemake --use-conda --profile rackham -j 100
 
 clean:
 	rm -rf *.rst .snakemake ./workflow/rules/__pycache__

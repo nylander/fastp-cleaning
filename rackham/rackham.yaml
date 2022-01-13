@@ -6,8 +6,8 @@ __default__:
     extra: ""
     time: "03:00:00"
     n: 4
-    stderr: "output/slurm_logs/slurm-{rule}-{wildcards}.stderr"
-    stdout: "output/slurm_logs/slurm-{rule}-{wildcards}.stdout"
+    stderr: "output/logs/slurm/slurm-{rule}-{wildcards}.stderr"
+    stdout: "output/logs/slurm/slurm-{rule}-{wildcards}.stdout"
     jobname: "[{rule}]: {wildcards}"
 
 #############################
