@@ -13,6 +13,7 @@ logdir: "output/logs"
 run_fastp: True
 fastp_dedup: True
 fastp_merge: False
+fastq_to_fasta: False
 multiqc_report: False
 
 #########################
@@ -24,4 +25,5 @@ fastp:
     dup_calc_accuracy: 3
 multiqc:
     extra: ""
-
+seqtk:
+    extra ""
