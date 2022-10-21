@@ -1,6 +1,6 @@
 # fastp-cleaning
 
-- Last modified: tor jan 13, 2022  05:47
+- Last modified: fre okt 21, 2022  03:52
 - Sign: nylander
 
 ## Description
@@ -22,6 +22,7 @@ Filter fastq files using [fastp](https://github.com/OpenGene/fastp).
 4. Adapters are automatically [detected and trimmed](https://github.com/OpenGene/fastp#adapters)
 5. PCR-deduplicaiton (optional, by editing the [config.yaml](config/config.yaml) file)
 6. Merging of paired-end read pairs (optional, by editing the [config.yaml](config/config.yaml) file)
+7. Convert the filtered fastq filies to fasta (optional, by editing the [config.yaml](config/config.yaml) file)
 
 ---
 
@@ -31,7 +32,7 @@ Filter fastq files using [fastp](https://github.com/OpenGene/fastp).
     - [`snakemake`](https://snakemake.readthedocs.io/en/stable/#)
     - [`fastp`](https://github.com/OpenGene/fastp)
     - [`multiqc`](https://multiqc.info/)
-2. Clone the repository: `git clone https://github.com/Naturhistoriska/fastp-cleaning.git`
+2. Clone the repository: `git clone https://github.com/nylander/fastp-cleaning.git`
 3. Put input data (gzip-compressed paired-end illumina fastq files) in folder `fastp-cleaning/input`
 4. Review the `fastp-cleaning/config/config.yaml` and make sure input file name endings (currently `_R1_001.fastq.gz`),
    matches your input files, select the steps used by the pipeline, and change options for software used if needed.
@@ -44,7 +45,7 @@ Filter fastq files using [fastp](https://github.com/OpenGene/fastp).
 1. Install
     - [`snakemake`](https://snakemake.readthedocs.io/en/stable/#)
     - [`conda`](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html)
-2. Clone the repository: `git clone https://github.com/Naturhistoriska/fastp-cleaning.git`
+2. Clone the repository: `git clone https://github.com/nylander/fastp-cleaning.git`
 3. Put input data (gzip-compressed paired-end illumina fastq files) in folder `fastp-cleaning/input`
 4. Review the `fastp-cleaning/config/config.yaml` and make sure input file name endings (currently `_R1_001.fastq.gz`),
    matches your input files, select the steps used by the pipeline, and change options for software used if needed.
@@ -69,12 +70,12 @@ For convenience, we also start the run with the [Makefile](Makefile).
 7. Load modules: `source rackham/scripts/init.sh`
 8. Test run: `make slurm-test`
 9. Run: `make slurm-run`
-10. Detach from the screen session.
+10. Detach from the screen session (Ctrl+A, Ctrl+D).
 
 ## TODO
 
-- add info on the filtering steps
-- make multiqc work
+- Add info on the filtering steps
+- Make multiqc work
 
 ## Acknowledgements
 
