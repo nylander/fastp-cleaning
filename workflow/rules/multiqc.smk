@@ -5,7 +5,7 @@ if config["multiqc_report"]:
         input:
             all_outputs
         output:
-            report=report(f"{OUTDIR}/multiqc/multiqc_report.html",
+            report=report(f"{OUTPUTDIR}/multiqc/multiqc_report.html",
                 category="Sequencing data quality",
                 caption="../report/multiqc.rst"),
         log:
@@ -20,11 +20,11 @@ if config["multiqc_report"]:
             extra=mqc_config["extra"],
         shell:
             """
-            multiqc {OUTDIR} \
+            multiqc {OUTPUTDIR} \
                 --filename {output.report} \
                 --force \
                 2> {log}
             """
 
     # Appended after the rule definition to avoid circular dependency
-    all_outputs.append(f"{OUTDIR}/multiqc/multiqc_report.html")
+    all_outputs.append(f"{OUTPUTDIR}/multiqc/multiqc_report.html")

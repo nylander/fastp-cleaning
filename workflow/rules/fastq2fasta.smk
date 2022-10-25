@@ -1,26 +1,30 @@
 if config["fastq_to_fasta"]:
-
     citations.add(publications["seqtk"])
-
+    if config["fastp_merge"]:
+        readpairs=["R1", "R2", "R12"]
+    else:
+        readpairs=["R1", "R2"]
+    fasta_files=expand(str(FASTADIR/"{sample}_{readpair}.fas"),
+            sample=SAMPLES,
+            readpair=readpairs)
+    all_outputs.extend(fasta_files)
     seqtk_config = config["seqtk"]
     extra=seqtk_config["extra"]
-
-    # TODO: If we did run merge, the file pattern to look for should
-    # be {sample}_L001_R12.fq.gz in the "output/fastp/" folder,
-    # Else _L001_R1.fq.gz and _L001_R2.fq.gz.
-    # Another alternative may be to run all "{file}.fq.gz" files.
-    # Start with that option.
-
     rule fq2fas:
         input:
-            fqgz=OUTDIR/{file}.fq.gz
+            fqgz=FASTQDIR/"{sample}_{readpair}.fq.gz"
+            #fas=FASTQDIR/config["input_fggz_pattern_pattern"].format(sample="{sample}", readpair=readpairs)
         output:
-            fas=OUTDIR/seqtk/{file}.fas
+            fas=FASTADIR/"{sample}_{readpair}.fas"
+            #fas=FASTADIR/config["output_fas_pattern"].format(sample="{sample}", readpair=readpairs)
         log:
-            stdout=str(LOGDIR/"seqtk/{sample}.stdout.log"),
-            stderr=str(LOGDIR/"seqtk/{sample}.stderr.log"),
+            stdout=str(LOGDIR/"seqtk/{sample}_{readpair}.stdout.log"),
+            stderr=str(LOGDIR/"seqtk/{sample}_{readpair}.stderr.log"),
         conda:
             "../envs/fastp-cleaning.yaml"
+        params:
+            extra=extra
         shell:
-            "seqtk seq -a {input.fqgz} > {output.fas}
+            "seqtk seq -a {input.fqgz} {params.extra} > {output.fas} 2> {log.stderr}"
+
 

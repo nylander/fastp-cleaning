@@ -3,7 +3,11 @@
 #########################
 inputdir: "input"
 input_fn_pattern: "{sample}_{readpair}_001.fastq.gz"
-outdir: "output"
+input_fqgz_pattern: "{sample}_{readpair}.fq.gz"
+output_fas_pattern: "{sample}_{readpair}.fas"
+outputdir: "output"
+fastqdir: "output/fastq"
+fastadir: "output/fasta"
 logdir: "output/logs"
 #report: "output/fastp-cleaning-report-"
 
@@ -12,8 +16,8 @@ logdir: "output/logs"
 #########################
 run_fastp: True
 fastp_dedup: True
-fastp_merge: False
-fastq_to_fasta: False
+fastp_merge: True
+fastq_to_fasta: True
 multiqc_report: False
 
 #########################
@@ -26,4 +30,5 @@ fastp:
 multiqc:
     extra: ""
 seqtk:
-    extra ""
+    extra: ""
+

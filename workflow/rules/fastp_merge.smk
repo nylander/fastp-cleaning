@@ -1,6 +1,6 @@
 if config["run_fastp"]:
     citations.add(publications["fastp"])
-    trimmed_qc = expand(str(OUTDIR/"fastp/{sample}_{readpair}.fq.gz"),
+    trimmed_qc = expand(str(FASTQDIR/"{sample}_{readpair}.fq.gz"),
             sample=SAMPLES,
             readpair=["R1", "R2"])
     all_outputs.extend(trimmed_qc)
@@ -14,11 +14,11 @@ if config["run_fastp"]:
             read1=INPUTDIR/config["input_fn_pattern"].format(sample="{sample}", readpair="R1"),
             read2=INPUTDIR/config["input_fn_pattern"].format(sample="{sample}", readpair="R2")
         output:
-            read1=OUTDIR/"fastp/{sample}_R1.fq.gz",
-            read2=OUTDIR/"fastp/{sample}_R2.fq.gz",
-            merged=OUTDIR/"fastp/{sample}_R12.fq.gz",
-            unpaired1=OUTDIR/"fastp/{sample}_R1_unpaired.fq.gz",
-            unpaired2=OUTDIR/"fastp/{sample}_R2_unpaired.fq.gz",
+            read1=FASTQDIR/"{sample}_R1.fq.gz",
+            read2=FASTQDIR/"{sample}_R2.fq.gz",
+            merged=FASTQDIR/"{sample}_R12.fq.gz",
+            unpaired1=FASTQDIR/"{sample}_R1_unpaired.fq.gz",
+            unpaired2=FASTQDIR/"{sample}_R2_unpaired.fq.gz",
             html=LOGDIR/"fastp/{sample}.fastp.html",
         log:
             stdout=str(LOGDIR/"fastp/{sample}.stdout.log"),

@@ -6,7 +6,9 @@ from rules.publications import publications
 configfile: "config/config.yaml"
 
 INPUTDIR = Path(config["inputdir"])
-OUTDIR = Path(config["outdir"])
+OUTPUTDIR = Path(config["outputdir"])
+FASTADIR = Path(config["fastadir"])
+FASTQDIR = Path(config["fastqdir"])
 LOGDIR = Path(config["logdir"])
 
 all_outputs = []
