@@ -1,15 +1,17 @@
 # fastp-cleaning
 
-- Last modified: fre okt 21, 2022  03:52
+- Last modified: tis okt 25, 2022  02:30
 - Sign: nylander
 
 ## Description
 
 Filter fastq files using [fastp](https://github.com/OpenGene/fastp).
 
-- **Input**: gzipped paired-end illumina `.fastq.gz` files
+- **Input**: gzipped paired-end Illumina `.fastq.gz` files
 - **Output**:
-    - filtered `.fastq.gz` files placed in a new output directory
+    - filtered `.fq.gz` files placed in a new output directory
+    - merged pair-end reads `.fq.gz` files placed in a new output directory (optional)
+    - fasta files from fastq placed in a new output directory (optional)
     - fastp reports (before/after) in `fastp-cleaning/output/logs/fastp/`
 
 ### Filtering steps
@@ -33,7 +35,7 @@ Filter fastq files using [fastp](https://github.com/OpenGene/fastp).
     - [`fastp`](https://github.com/OpenGene/fastp)
     - [`multiqc`](https://multiqc.info/)
 2. Clone the repository: `git clone https://github.com/nylander/fastp-cleaning.git`
-3. Put input data (gzip-compressed paired-end illumina fastq files) in folder `fastp-cleaning/input`
+3. Put input data (gzip-compressed paired-end Illumina fastq files) in folder `fastp-cleaning/input`
 4. Review the `fastp-cleaning/config/config.yaml` and make sure input file name endings (currently `_R1_001.fastq.gz`),
    matches your input files, select the steps used by the pipeline, and change options for software used if needed.
 5. Make sure your current working directory is `fastp-cleaning`
