@@ -18,6 +18,7 @@ run_fastp: True
 fastp_dedup: True
 fastp_merge: True
 fastq_to_fasta: True
+nbis: True
 multiqc_report: False
 
 #########################
@@ -31,4 +32,6 @@ multiqc:
     extra: ""
 seqtk:
     extra: ""
-
+seqkit:
+    extra: "-t dna"
+    n: 4
