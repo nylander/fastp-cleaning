@@ -1,6 +1,6 @@
 # fastp-cleaning
 
-- Last modified: ons okt 26, 2022  07:14
+- Last modified: ons okt 26, 2022  07:16
 - Sign: nylander
 
 ## Description
@@ -105,7 +105,7 @@ start the run with the [Makefile](Makefile).
 
 ## Acknowledgements
 
-The pipeline heavily influenced by the
+The pipeline was heavily influenced by the
 [stag-mwc](https://github.com/ctmrbio/stag-mwc) pipeline.
 
 ## License and copyright
