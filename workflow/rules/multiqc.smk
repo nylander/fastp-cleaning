@@ -1,15 +1,18 @@
 if config["multiqc_report"]:
-    citations.add(publications["MultiQC"])
+
+    citations.add(publications["multiqc"])
+
     mqc_config = config["multiqc"]
+
     rule multiqc:
         input:
             all_outputs
         output:
             report=report(f"{OUTPUTDIR}/multiqc/multiqc_report.html",
-                category="Sequencing data quality",
-                caption="../report/multiqc.rst"),
+            category="Sequencing data quality",
+            caption="../report/multiqc.rst"),
         log:
-           f"{LOGDIR}/multiqc/multiqc.log"
+            f"{LOGDIR}/multiqc/multiqc.log"
         shadow:
             "shallow"
         conda:

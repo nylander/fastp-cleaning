@@ -1,6 +1,7 @@
 publications = {
-    "MultiQC": "Philip Ewels, Måns Magnusson, Sverker Lundin and Max Käller (2018). MultiQC: Summarize analysis results for multiple tools and samples in a single report. Bioinformatics. https://doi.org/10.1093/bioinformatics/btw354",
-    "Snakemake": "Köster, Johannes and Rahmann, Sven (2012). Snakemake - A scalable bioinformatics workflow engine. Bioinformatics, Volume 28, Issue 19. https://doi.org/10.1093/bioinformatics/bts480",
-    "fastp": "Shifu Chen, Yanqing Zhou, Yaru Chen, Jia Gu (2018). fastp: an ultra-fast all-in-one FASTQ preprocessor. Bioinformatics, Volume 34, Issue 17, 01 September 2018, Pages i884–i890. https://doi.org/10.1093/bioinformatics/bty560",
-    "seqtk": "Heng Li (2022). Seqtk: a fast and lightweight tool for processing FASTA or FASTQ sequences. https://github.com/lh3/seqtk",
+    "fastp": "Chen, S., Y. Zhou, Y. Chen, J. Gu. 2018. fastp: an ultra-fast all-in-one FASTQ preprocessor. Bioinformatics, 34:i884–i890. https://doi.org/10.1093/bioinformatics/bty560",
+    "multiqc": "Ewels, P., M. Magnusson, S. Lundin, M. Käller. 2018. MultiQC: Summarize analysis results for multiple tools and samples in a single report. Bioinformatics, 32:3047–3048. https://doi.org/10.1093/bioinformatics/btw354",
+    "seqkit": "Shen, W., S. Le, Y. Li, F. Hu. 2016. SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation. PLoS ONE, 11:e0163962. https://doi.org/10.1371/journal.pone.0163962",
+    "seqtk": "Li, H. 2022. Seqtk: a fast and lightweight tool for processing FASTA or FASTQ sequences. https://github.com/lh3/seqtk",
+    "snakemake": "Köster, J., S. Rahmann. 2012. Snakemake - A scalable bioinformatics workflow engine. Bioinformatics, 28:2520–2522. https://doi.org/10.1093/bioinformatics/bts480",
 }

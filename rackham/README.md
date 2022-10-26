@@ -1,6 +1,6 @@
 # README
 
-- Last modified: tor jan 13, 2022  02:42
+- Last modified: ons okt 26, 2022  04:53
 - Sign: nylander
 
 ## Description
@@ -12,5 +12,5 @@ See more details here: <https://www.uppmax.uu.se/support/user-guides/slurm-user-
 **IMPORTANT:**
 Make sure to change the `account` entry in the file `rackham.yaml`.
 
-
 Adapted from <https://github.com/ctmrbio/stag-mwc>
+

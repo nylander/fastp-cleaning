@@ -1,15 +1,20 @@
-if config["nbis"]:
+if config["module"]:
+
     citations.add(publications["seqkit"])
+
     if config["fastp_merge"]:
         readpairs=["R1", "R2", "R12"]
     else:
         readpairs=["R1", "R2"]
+
     tsv_files=expand(str(FASTADIR/"{sample}_{readpair}.tsv"),
             sample=SAMPLES,
             readpair=readpairs)
     all_outputs.extend(tsv_files)
+
     seqkit_config = config["seqkit"]
     extra=seqkit_config["extra"]
+
     rule search_fas:
         input:
             fas=FASTADIR/"{sample}_{readpair}.fas"
@@ -21,7 +26,7 @@ if config["nbis"]:
         conda:
             "../envs/fastp-cleaning.yaml"
         threads:
-            seqkit_config["n"]
+            cluster_config["seqkit"]["n"] if "seqkit" in cluster_config else seqkit_config["n"]
         params:
             extra=extra
         shell:
@@ -37,7 +42,5 @@ if config["nbis"]:
                 --only-positive-strand \
                 -o {output.tsv} \
                 {input.fas} > {log.stdout} 2> {log.stderr}
-
             """
-
 

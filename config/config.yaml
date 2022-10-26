@@ -1,6 +1,4 @@
-#########################
 # Run configuration
-#########################
 inputdir: "input"
 input_fn_pattern: "{sample}_{readpair}_001.fastq.gz"
 input_fqgz_pattern: "{sample}_{readpair}.fq.gz"
@@ -9,29 +7,31 @@ outputdir: "output"
 fastqdir: "output/fastq"
 fastadir: "output/fasta"
 logdir: "output/logs"
-#report: "output/fastp-cleaning-report-"
+report: "output/fastp-cleaning-report-"
 
-#########################
-# Pipeline steps included
-#########################
+# Workflow steps
 run_fastp: True
 fastp_dedup: True
 fastp_merge: True
 fastq_to_fasta: True
-nbis: True
+module: False
 multiqc_report: False
 
-#########################
 # Extra options to tools
-#########################
+# fastp
 fastp:
     extra: "--detect_adapter_for_pe --correction --cut_right "
     n: 4
     dup_calc_accuracy: 3
-multiqc:
-    extra: ""
+# seqtk
 seqtk:
     extra: ""
+    n: 1
+# seqkit
 seqkit:
     extra: "-t dna"
     n: 4
+# multiqc
+multiqc:
+    extra: ""
+

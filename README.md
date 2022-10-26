@@ -1,22 +1,25 @@
 # fastp-cleaning
 
-- Last modified: tis okt 25, 2022  02:30
+- Last modified: ons okt 26, 2022  06:58
 - Sign: nylander
 
 ## Description
 
 Filter fastq files using [fastp](https://github.com/OpenGene/fastp).
 
-- **Input**: gzipped paired-end Illumina `.fastq.gz` files
-- **Output**:
-    - filtered `.fq.gz` files placed in a new output directory
-    - merged pair-end reads `.fq.gz` files placed in a new output directory (optional)
-    - fasta files from fastq placed in a new output directory (optional)
-    - fastp reports (before/after) in `fastp-cleaning/output/logs/fastp/`
+### Input
+
+- gzipped paired-end Illumina `.fastq.gz` files. Example data (138M gzipped)
+  can be downloaded here: <https://owncloud.nrm.se/index.php/s/iT8SCXRwKTqUU3q>
+
+### Output
+
+- filtered `.fq.gz` files placed in a new output directory
+- filtering reports (before/after)
+- merged pair-end reads `.fq.gz` files (optional)
+- fasta files from filtered fastq (optional)
 
 ### Filtering steps
-
-(TODO: add more description. Please see the [fastp-manual](https://github.com/OpenGene/fastp/wiki) for details.)
 
 1. Filter on [quality](https://github.com/OpenGene/fastp#quality-filter)
 2. Filter on [length](https://github.com/OpenGene/fastp#length-filter)
@@ -26,6 +29,8 @@ Filter fastq files using [fastp](https://github.com/OpenGene/fastp).
 6. Merging of paired-end read pairs (optional, by editing the [config.yaml](config/config.yaml) file)
 7. Convert the filtered fastq filies to fasta (optional, by editing the [config.yaml](config/config.yaml) file)
 
+Please see the [fastp-manual](https://github.com/OpenGene/fastp/wiki) for details.
+
 ---
 
 ## How to run locally, without conda
@@ -33,7 +38,7 @@ Filter fastq files using [fastp](https://github.com/OpenGene/fastp).
 1. Install
     - [`snakemake`](https://snakemake.readthedocs.io/en/stable/#)
     - [`fastp`](https://github.com/OpenGene/fastp)
-    - [`multiqc`](https://multiqc.info/)
+    - [`seqtk`](https://github.com/lh3/seqtk)
 2. Clone the repository: `git clone https://github.com/nylander/fastp-cleaning.git`
 3. Put input data (gzip-compressed paired-end Illumina fastq files) in folder `fastp-cleaning/input`
 4. Review the `fastp-cleaning/config/config.yaml` and make sure input file name endings (currently `_R1_001.fastq.gz`),
@@ -77,7 +82,7 @@ For convenience, we also start the run with the [Makefile](Makefile).
 ## TODO
 
 - Add info on the filtering steps
-- Make multiqc work
+- Make multiqc work?
 
 ## Acknowledgements
 

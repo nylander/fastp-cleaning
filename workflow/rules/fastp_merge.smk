@@ -1,14 +1,18 @@
 if config["run_fastp"]:
+
     citations.add(publications["fastp"])
+
     trimmed_qc = expand(str(FASTQDIR/"{sample}_{readpair}.fq.gz"),
             sample=SAMPLES,
             readpair=["R1", "R2"])
     all_outputs.extend(trimmed_qc)
+
     fastp_config = config["fastp"]
     if config["fastp_dedup"]:
         extra=fastp_config["extra"]+" --dedup --dup_calc_accuracy "+str(fastp_config["dup_calc_accuracy"])
     else:
         extra=fastp_config["extra"]
+
     rule fastp:
         input:
             read1=INPUTDIR/config["input_fn_pattern"].format(sample="{sample}", readpair="R1"),
@@ -48,3 +52,4 @@ if config["run_fastp"]:
                 > {log.stdout} \
                 2> {log.stderr}
             """
+
