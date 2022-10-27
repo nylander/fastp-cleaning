@@ -1,6 +1,6 @@
 # fastp-cleaning
 
-- Last modified: ons okt 26, 2022  07:16
+- Last modified: tor okt 27, 2022  10:11
 - Sign: nylander
 
 ## Description
@@ -101,7 +101,6 @@ start the run with the [Makefile](Makefile).
 ## TODO
 
 - Add info on the filtering steps
-- Make multiqc work?
 
 ## Acknowledgements
 

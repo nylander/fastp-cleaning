@@ -5,7 +5,6 @@ channels:
     - bioconda
 dependencies:
     - fastp = 0.23.1
-    - multiqc = 1.13
     - pandas = 1.2.1
     - pigz = 2.4
     - python >= 3.7

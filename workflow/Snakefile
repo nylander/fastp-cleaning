@@ -5,11 +5,11 @@ from rules.publications import publications
 
 configfile: "config/config.yaml"
 
-INPUTDIR = Path(config["inputdir"])
-OUTPUTDIR = Path(config["outputdir"])
 FASTADIR = Path(config["fastadir"])
 FASTQDIR = Path(config["fastqdir"])
+INPUTDIR = Path(config["inputdir"])
 LOGDIR = Path(config["logdir"])
+OUTPUTDIR = Path(config["outputdir"])
 
 all_outputs = []
 
@@ -31,9 +31,6 @@ else:
 
 if config["fastq_to_fasta"]:
     include: "rules/fastq_to_fasta.smk"
-
-if config["multiqc_report"]:
-    include: "rules/multiqc.smk"
 
 localrules: all
 

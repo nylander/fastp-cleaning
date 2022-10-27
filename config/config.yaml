@@ -15,7 +15,6 @@ fastp_dedup: True
 fastp_merge: True
 fastq_to_fasta: True
 module: False
-multiqc_report: False
 
 # Extra options to tools
 # fastp
@@ -31,7 +30,3 @@ seqtk:
 seqkit:
     extra: "-t dna"
     n: 4
-# multiqc
-multiqc:
-    extra: ""
-
