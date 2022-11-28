@@ -13,7 +13,7 @@ fastp-reports in html format located in the
 
 The following tools were used to produce the results included in this report:
 
-.. include:: citations.rst
+.. include:: output/citations.rst
 
 If you publish any research using data produced with this workflow please make
 sure you cite the publications listed above.

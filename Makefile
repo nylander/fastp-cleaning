@@ -17,7 +17,7 @@ dryrun:
 	snakemake --use-conda --jobs --printshellcmds --dry-run
 
 report:
-	snakemake --report fastp-cleaning-report.html
+	snakemake --report workflow-report.html
 
 slurm-test:
 	snakemake --dry-run --printshellcmds --use-conda --profile rackham -j 100

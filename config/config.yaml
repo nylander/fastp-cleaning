@@ -7,7 +7,7 @@ outputdir: "output"
 fastqdir: "output/fastq"
 fastadir: "output/fasta"
 logdir: "output/logs"
-report: "output/fastp-cleaning-report-"
+report: "output/workflow-report-"
 
 # Workflow steps
 run_fastp: True

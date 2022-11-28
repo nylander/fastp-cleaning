@@ -25,8 +25,7 @@ if config["run_fastp"]:
             unpaired2=FASTQDIR/"{sample}_R2_unpaired.fq.gz",
             html=LOGDIR/"fastp/{sample}.fastp.html",
         log:
-            stdout=str(LOGDIR/"fastp/{sample}.stdout.log"),
-            stderr=str(LOGDIR/"fastp/{sample}.stderr.log"),
+            stderr=str(LOGDIR/"fastp/{sample}.fastp.log"),
         shadow:
             "shallow"
         conda:
@@ -49,7 +48,6 @@ if config["run_fastp"]:
                 --html {output.html} \
                 --thread {threads} \
                 {params.extra} \
-                > {log.stdout} \
                 2> {log.stderr}
             """
 

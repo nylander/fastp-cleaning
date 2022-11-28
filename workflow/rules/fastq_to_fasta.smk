@@ -18,13 +18,11 @@ if config["fastq_to_fasta"]:
     rule fq2fas:
         input:
             fqgz=FASTQDIR/"{sample}_{readpair}.fq.gz"
-            #fas=FASTQDIR/config["input_fggz_pattern_pattern"].format(sample="{sample}", readpair=readpairs)
         output:
             fas=FASTADIR/"{sample}_{readpair}.fas"
-            #fas=FASTADIR/config["output_fas_pattern"].format(sample="{sample}", readpair=readpairs)
-        log:
-            stdout=str(LOGDIR/"seqtk/{sample}_{readpair}.stdout.log"),
-            stderr=str(LOGDIR/"seqtk/{sample}_{readpair}.stderr.log"),
+        #log:
+        #    stdout=str(LOGDIR/"seqtk/{sample}_{readpair}.stdout.log"),
+        #    stderr=str(LOGDIR/"seqtk/{sample}_{readpair}.stderr.log"),
         conda:
             "../envs/fastp-cleaning.yaml"
         threads:
@@ -32,6 +30,6 @@ if config["fastq_to_fasta"]:
         params:
             extra=extra
         shell:
-            "seqtk seq -a {input.fqgz} {params.extra} > {output.fas} 2> {log.stderr}"
+            "seqtk seq -a {input.fqgz} {params.extra} > {output.fas}"
 
 
