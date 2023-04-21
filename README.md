@@ -1,16 +1,17 @@
 # fastp-cleaning
 
-- Last modified: tor okt 27, 2022  10:11
+- Last modified: fre apr 21, 2023  03:59
 - Sign: nylander
 
 ## Description
 
-Filter fastq files using [fastp](https://github.com/OpenGene/fastp).
+Workflow using snakemake for filtering fastq files using
+[fastp](https://github.com/OpenGene/fastp).
 
 ### Input
 
-- gzipped paired-end Illumina `.fastq.gz` files. Example data (138M gzipped)
-  can be downloaded here: <https://owncloud.nrm.se/index.php/s/iT8SCXRwKTqUU3q>
+1. gzipped paired-end Illumina `.fastq.gz` files (see [README](input/README.md)
+   for details).
 
 ### Output
 
@@ -18,6 +19,7 @@ Filter fastq files using [fastp](https://github.com/OpenGene/fastp).
 - filtering reports (before/after)
 - merged pair-end reads `.fq.gz` files (optional)
 - fasta files from filtered fastq (optional)
+- workflow report in html format (in folder output)
 
 ### Filtering steps
 
@@ -31,7 +33,7 @@ Filter fastq files using [fastp](https://github.com/OpenGene/fastp).
    [config.yaml](config/config.yaml) file)
 6. Merging of paired-end read pairs (optional, by editing the
    [config.yaml](config/config.yaml) file)
-7. Convert the filtered fastq filies to fasta (optional, by editing the
+7. Convert the filtered fastq files to fasta (optional, by editing the
    [config.yaml](config/config.yaml) file)
 
 Please see the [fastp-manual](https://github.com/OpenGene/fastp/wiki) for
@@ -39,25 +41,7 @@ details on the filtering procedures.
 
 ---
 
-## How to run locally, without conda
-
-1. Install
-    - [`snakemake`](https://snakemake.readthedocs.io/en/stable/#)
-    - [`fastp`](https://github.com/OpenGene/fastp)
-    - [`seqtk`](https://github.com/lh3/seqtk)
-2. Clone the repository: `git clone
-https://github.com/nylander/fastp-cleaning.git`
-3. Put input data (gzip-compressed paired-end Illumina fastq files) in folder
-`fastp-cleaning/input`
-4. Review the `fastp-cleaning/config/config.yaml` and make sure input file name
-endings (currently `_R1_001.fastq.gz`), matches your input files, select the
-steps used by the pipeline, and change options for software used if needed.
-5. Make sure your current working directory is `fastp-cleaning`
-6. Test run `snakemake -n`
-7. Run with `snakemake --cores N` (substitute N with the number of cores you
-wish to use)
-
-## How to run locally, with conda
+## How to run locally with conda
 
 1. Install
     - [`snakemake`](https://snakemake.readthedocs.io/en/stable/#)
@@ -76,9 +60,9 @@ cores you wish to use)
 
 ## How to run on UPPMAX
 
-Note: On rackham we are loading conda and snakemake (v.5) as modules.  This can
+Note: On rackham we are loading conda and snakemake (v.5) as modules. This can
 be done manually or using a script
-([rackham/scripts/init.sh](rackham/scripts/init.sh)).  For convenience, we also
+([rackham/scripts/init.sh](rackham/scripts/init.sh)). For convenience, we also
 start the run with the [Makefile](Makefile).
 
 1. Log in to [UPPMAX](https://uppmax.uu.se/) (rackham.uppmax.uu.se)
@@ -88,7 +72,7 @@ start the run with the [Makefile](Makefile).
    account number. For example: `sed -i -e 's/snic1234-56-789/snic2022-01-001/'
    rackham/rackham.yaml`.
 4. Add input files (use symbolic links to save space) to
-   `fastp-cleaning/input/`
+   `fastp-cleaning/input/`.
 5. Review the `fastp-cleaning/config/config.yaml` and make sure input file-name
    endings (currently `_R1_001.fastq.gz`), matches your input files, select the
    steps used by the pipeline, and change options for software used if needed.
@@ -97,19 +81,19 @@ start the run with the [Makefile](Makefile).
 8. Test run: `make slurm-test`
 9. Run: `make slurm-run`
 10. Detach from the screen session (Ctrl+A, Ctrl+D).
-
-## TODO
-
-- Add info on the filtering steps
+11. Monitor progress by, e.g., `jobinfo -u $USER`
+12. To re-attach to screen session, use `screen -R fast-cleaning`
 
 ## Acknowledgements
 
-The pipeline was heavily influenced by the
-[stag-mwc](https://github.com/ctmrbio/stag-mwc) pipeline.
+The pipeline is  heavily influenced by
+[stag-mwc](https://github.com/ctmrbio/stag-mwc).  Thanks to [Marcel
+Martin](https://github.com/marcelm) and [John Sundh](https://github.com/johnne)
+for important feedback on the bam parsing (MM) and the workflow (JS).
 
 ## License and copyright
 
-Copyright (c) 2021, 2022 Johan Nylander
+Copyright (c) 2021, 2022, 2023 Johan Nylander
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -1,20 +1,18 @@
 # Run configuration
-inputdir: "input"
-input_fn_pattern: "{sample}_{readpair}_001.fastq.gz"
-input_fqgz_pattern: "{sample}_{readpair}.fq.gz"
-output_fas_pattern: "{sample}_{readpair}.fas"
-outputdir: "output"
-fastqdir: "output/fastq"
-fastadir: "output/fasta"
-logdir: "output/logs"
-report: "output/workflow-report-"
+inputdir:   "input"
+fn_pattern: "{sample}_{readpair}_001.fastq.gz"
+outputdir:  "output"
+fastadir:   "output/fasta"
+fastpdir:   "output/fastp"
+fastqdir:   "output/fastq"
+logdir:     "output/logs"
+report:     "output/workflow-report-"
 
 # Workflow steps
-run_fastp: True
-fastp_dedup: True
-fastp_merge: True
-fastq_to_fasta: True
-module: False
+run_fastp:          True
+run_fastp_dedup:    True
+run_fastp_merge:    True
+run_fastq_to_fasta: True
 
 # Extra options to tools
 # fastp
@@ -22,11 +20,13 @@ fastp:
     extra: "--detect_adapter_for_pe --correction --cut_right "
     n: 4
     dup_calc_accuracy: 3
-# seqtk
-seqtk:
+
+# fastq_to_fasta using seqtk seq
+fastq_to_fasta:
     extra: ""
     n: 1
-# seqkit
-seqkit:
+
+# tab_to_fasta using seqkit
+tab_to_fasta:
     extra: "-t dna"
     n: 4

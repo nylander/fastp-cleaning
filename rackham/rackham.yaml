@@ -1,27 +1,30 @@
 # Cluster config file for fastp-cleaning for use on UPPMAX Rackham
 # IMPORTANT: Adjust the account number below!
+# Furthermore, the time required may have to adjusted.
 __default__:
     account: "snic1234-56-789"
     partition: "core"
     extra: ""
-    time: "03:00:00"
+    time: "00:30:00"
     n: 4
     stderr: "output/logs/slurm/slurm-{rule}-{wildcards}.stderr"
     stdout: "output/logs/slurm/slurm-{rule}-{wildcards}.stdout"
     jobname: "[{rule}]: {wildcards}"
 
-# fastp
+# Settings for rules
+
+# fastp/fastp_merge using fastp
 fastp:
     n: 4
-    time: "01:00:00"
+    time: "00:30:00"
 
-# seqtk
-seqtk:
+# fastq_to_fasta using seqtk seq
+fastq_to_fasta:
     n: 1
-    time: "01:00:00"
+    time: "00:10:00"
 
-# seqkit
-seqkit:
-    n: 4
-    time: "01:00:00"
+# tab_to_fasta using seqkit tab2fx
+tab_to_fasta:
+    n: 1
+    time: "00:10:00"
 

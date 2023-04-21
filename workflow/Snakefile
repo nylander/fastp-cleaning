@@ -6,6 +6,7 @@ from rules.publications import publications
 configfile: "config/config.yaml"
 
 FASTADIR = Path(config["fastadir"])
+FASTPDIR = Path(config["fastpdir"])
 FASTQDIR = Path(config["fastqdir"])
 INPUTDIR = Path(config["inputdir"])
 LOGDIR = Path(config["logdir"])
@@ -15,21 +16,21 @@ all_outputs = []
 
 citations = {publications["snakemake"]}
 
-SAMPLES = set(glob_wildcards(INPUTDIR/config["input_fn_pattern"]).sample)
+SAMPLES = set(glob_wildcards(INPUTDIR/config["fn_pattern"]).sample)
 
 if len(SAMPLES) < 1:
     raise WorkflowError("Found no samples! Check input file pattern and path in config.yaml")
 else:
-    print(f"Found the following samples in inputdir using input filename pattern '{config['input_fn_pattern']}':\n{SAMPLES}")
+    print(f"Found the following samples in inputdir using input filename pattern '{config['fn_pattern']}':\n{SAMPLES}")
 
 report: "report/workflow.rst"
 
-if config["fastp_merge"]:
+if config["run_fastp_merge"]:
     include: "rules/fastp_merge.smk"
 else:
     include: "rules/fastp.smk"
 
-if config["fastq_to_fasta"]:
+if config["run_fastq_to_fasta"]:
     include: "rules/fastq_to_fasta.smk"
 
 localrules: all
