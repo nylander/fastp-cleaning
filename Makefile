@@ -1,9 +1,9 @@
 # Makefile for fastp-cleaning
 
-# Last modiefied: fre 14 jan 2022 16:35:38
+# Last modified: fre apr 21, 2023  04:32
 # Sign: JN
 
-.PHONY: all run debug dryrun report slurm-run clean distclean
+.PHONY: all run debug dryrun report slurm-test slurm-run clean distclean
 
 all: run
 
