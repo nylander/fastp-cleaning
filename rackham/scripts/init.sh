@@ -2,7 +2,7 @@
 #
 # Load modules on rackham.uppmax.uu.se
 # Run from fastp-cleaning folder as such:
-# $ bash rackham/scripts/init.sh
+# $ source rackham/scripts/init.sh
 
 module load bioinfo-tools
 module load conda
