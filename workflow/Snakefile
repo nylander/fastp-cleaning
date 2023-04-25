@@ -62,6 +62,7 @@ onsuccess:
         #if citations_link.exists():
         #    Path("output/citations.rst").unlink()
         #Path("citations.rst").symlink_to(citation_filename)
+        # Begin old code
         shell("{snakemake_call} --unlock".format(snakemake_call=argv[0]))
         shell("{snakemake_call} --report {report}-{datetime}.html".format(
             snakemake_call=argv[0],
@@ -69,6 +70,35 @@ onsuccess:
             datetime=report_datetime,
             )
         )
+        # End old code
+        # Begin new code (tis 25 apr 2023 13:02:27).
+        # From https://github.com/ctmrbio/stag-mwc/blob/master/workflow/Snakefile
+        unlock_call = copy.deepcopy(argv)
+        unlock_call.append("--unlock")
+        report_args = copy.deepcopy(argv)
+        report_args.extend(["--report", f"{config['report']}-{report_datetime}.zip"])
+        skip = False
+        report_call = []
+        for arg in report_args:
+            if arg == "--use-singularity":
+                continue
+            if arg == "--singularity-args":
+                skip = True
+                continue
+            if arg == "--singularity-prefix":
+                skip = True
+                continue
+            if arg == "--jobs":
+                skip = True
+                continue
+            if skip:
+                skip = False
+                continue
+            report_call.append(arg)
+        subprocess.run(unlock_call)
+        subprocess.run(report_call)
+        # End new code
+
     print("\n".join([
         "="*60,
         "Workflow completed successfully".center(60),

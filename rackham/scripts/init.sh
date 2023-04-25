@@ -6,7 +6,7 @@
 
 module load bioinfo-tools
 module load conda
-module load snakemake/5.30.1
+module load snakemake/7.25.0
 mkdir -p conda_envs
 export CONDA_ENVS_PATH=$PWD/conda_envs
 
