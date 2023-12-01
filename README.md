@@ -1,6 +1,6 @@
 # fastp-cleaning
 
-- Last modified: fre apr 21, 2023  04:50
+- Last modified: fre dec 01, 2023  02:58
 - Sign: Johan Nylander
 
 ## Description
@@ -12,7 +12,7 @@ Workflow using snakemake for filtering fastq files using
 
 1. gzipped paired-end Illumina `.fastq.gz` files (see [README](input/README.md)
    for details). Example data (138M gzipped) can be downloaded here:
-   [https://owncloud.nrm.se/index.php/s/iT8SCXRwKTqUU3q](https://owncloud.nrm.se/index.php/s/iT8SCXRwKTqUU3q)
+   [https://nrmcloud.nrm.se/s/wgD4qoHgNX4yj3T](https://nrmcloud.nrm.se/s/wgD4qoHgNX4yj3T)
 
 ### Output
 
