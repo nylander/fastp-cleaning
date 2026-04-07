@@ -1,6 +1,6 @@
 # fastp-cleaning
 
-- Last modified: fre dec 01, 2023  02:58
+- Last modified: 2026-04-07 17:07:11
 - Sign: Johan Nylander
 
 ## Description
@@ -59,58 +59,8 @@ steps used by the pipeline, and change options for software used if needed.
 7. Run with `snakemake --use-conda --cores N` (substitute N with the number of
 cores you wish to use)
 
-## How to run on UPPMAX
-
-Note: On rackham we are loading conda and snakemake (v.5) as modules. This can
-be done manually or using a script
-([rackham/scripts/init.sh](rackham/scripts/init.sh)). For convenience, we also
-start the run with the [Makefile](Makefile).
-
-1. Log in to [UPPMAX](https://uppmax.uu.se/) (rackham.uppmax.uu.se)
-2. Clone the repository in a project folder: `git clone
-   https://github.com/nylander/fastp-cleaning.git`
-3. Edit the file `fastp-cleaning/rackham/rackham.yaml` to add your CPU-project
-   account number. For example: `sed -i -e 's/snic1234-56-789/snic2022-01-001/'
-   rackham/rackham.yaml`.
-4. Add input files (use symbolic links to save space) to
-   `fastp-cleaning/input/`.
-5. Review the `fastp-cleaning/config/config.yaml` and make sure input file-name
-   endings (currently `_R1_001.fastq.gz`), matches your input files, select the
-   steps used by the pipeline, and change options for software used if needed.
-6. Start a screen session: `screen -S fast-cleaning`
-7. Load modules: `source rackham/scripts/init.sh`
-8. Test run: `make slurm-test`
-9. Run: `make slurm-run`
-10. Detach from the screen session (Ctrl+A, Ctrl+D).
-11. Monitor progress by, e.g., `jobinfo -u $USER`
-12. To re-attach to screen session, use `screen -R fast-cleaning`
-
-## Acknowledgements
-
-The pipeline is  heavily influenced by
-[stag-mwc](https://github.com/ctmrbio/stag-mwc).  Thanks to [Marcel
-Martin](https://github.com/marcelm) and [John Sundh](https://github.com/johnne)
-for important feedback on the bam parsing (MM) and the workflow (JS).
-
 ## License and copyright
 
-Copyright (c) 2021, 2022, 2023 Johan Nylander
+Copyright (c) 2021-2026 Johan Nylander
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
+[MIT LICENSE](LICENSE)
