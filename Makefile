@@ -1,6 +1,6 @@
 # Makefile for fastp-cleaning
 
-# Last modified: fre apr 21, 2023  04:32
+# Last modified: 2026-04-07 16:11:39
 # Sign: JN
 
 .PHONY: all run debug dryrun report slurm-test slurm-run clean distclean
@@ -8,13 +8,13 @@
 all: run
 
 run:
-	snakemake --use-conda --jobs
+	snakemake --use-conda --jobs unlimited
 
 debug:
-	snakemake --use-conda --jobs --printshellcmds --notemp --reason
+	snakemake --use-conda --jobs unlimited --printshellcmds --notemp --reason
 
 dryrun:
-	snakemake --use-conda --jobs --printshellcmds --dry-run
+	snakemake --use-conda --jobs unlimited --printshellcmds --dry-run
 
 report:
 	snakemake --report workflow-report.html
