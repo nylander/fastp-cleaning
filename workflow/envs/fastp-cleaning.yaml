@@ -9,4 +9,4 @@ dependencies:
   - conda-forge::libdeflate = 1.13
   - conda-forge::ncurses
   - pigz = 2.6
-  - python >= 3.10
+  - python >= 3.12
