@@ -29,7 +29,7 @@ rule fastp:
     conda:
         "../envs/fastp-cleaning.yaml"
     threads:
-        cluster_config["fastp"]["n"] if "fastp" in cluster_config else fastp_config["n"]
+        fastp_config["n"]
     params:
         extra = extra
     shell:

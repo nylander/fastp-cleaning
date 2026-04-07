@@ -26,7 +26,7 @@ if config["module"]:
         conda:
             "../envs/fastp-cleaning.yaml"
         threads:
-            cluster_config["seqkit"]["n"] if "seqkit" in cluster_config else seqkit_config["n"]
+            seqkit_config["n"]
         params:
             extra=extra
         shell:
