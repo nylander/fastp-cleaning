@@ -11,8 +11,8 @@ report:     "output/workflow-report-"
 # Workflow steps
 run_fastp:          True
 run_fastp_dedup:    True
-run_fastp_merge:    True
-run_fastq_to_fasta: True
+run_fastp_merge:    False
+run_fastq_to_fasta: False
 
 # Extra options to tools
 # fastp
