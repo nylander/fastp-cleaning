@@ -1,15 +1,6 @@
 *.swp
 .snakemake/*
-DEBUG
-NOTES
-Old.tgz
-Old.zip
-Old/*
 private/*
-TODO
 __pycache__
 input/*.gz
 output/*
-tmp.tgz
-tmp.zip
-tmp/*
