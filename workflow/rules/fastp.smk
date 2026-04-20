@@ -18,7 +18,8 @@ rule fastp:
     output:
         read1 = FASTQDIR/"{sample}_R1.fq.gz",
         read2 = FASTQDIR/"{sample}_R2.fq.gz",
-        html = FASTPDIR/"{sample}.fastp.html"
+        html = FASTPDIR/"{sample}.fastp.html",
+        json = FASTPDIR/"{sample}.fastp.json"
     log:
         LOGDIR/"fastp/{sample}.fastp.log"
     shadow:
@@ -38,6 +39,7 @@ rule fastp:
             --out1 {output.read1} \
             --out2 {output.read2} \
             --html {output.html} \
+            --json {output.json} \
             --thread {threads} \
             {params.extra} \
             > {log} 2>&1

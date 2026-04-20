@@ -22,6 +22,7 @@ rule fastp:
         unpaired1 = FASTQDIR/"{sample}_R1_unpaired.fq.gz",
         unpaired2 = FASTQDIR/"{sample}_R2_unpaired.fq.gz",
         html = FASTPDIR/"{sample}.fastp.html",
+        json = FASTPDIR/"{sample}.fastp.json"
     log:
         LOGDIR/"fastp/{sample}.fastp.log"
     shadow:
@@ -45,6 +46,7 @@ rule fastp:
             --unpaired1 {output.unpaired1}\
             --unpaired2 {output.unpaired2}\
             --html {output.html} \
+            --json {output.json} \
             --thread {threads} \
             {params.extra} \
             > {log} 2>&1
