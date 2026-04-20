@@ -30,7 +30,8 @@ rule fastp:
     params:
         extra = extra
     shell:
-        """
+        r"""
+        set -euo pipefail
         fastp \
             --in1 {input.read1} \
             --in2 {input.read2} \
@@ -39,6 +40,6 @@ rule fastp:
             --html {output.html} \
             --thread {threads} \
             {params.extra} \
-            &> {log}
+            > {log} 2>&1
         """
 
