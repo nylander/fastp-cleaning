@@ -18,7 +18,7 @@ run_fastq_to_fasta: False
 # fastp
 fastp:
     extra: "--detect_adapter_for_pe --correction --cut_right "
-    n: 4
+    n: 2
     dup_calc_accuracy: 3
 
 # fastq_to_fasta using seqtk seq
